@@ -1,69 +1,56 @@
   
-
+//loopThrough takes an array and a callback and invokes the callback on each value inside of the array
   window.loopThrough = function(array, callback){
-    /* 
-
-    1. loopThrough takes an array and a callback and invokes the callback on each value inside of the array.
-
-    var print = function(val){
-      console.log(val);
-    };
-
-    var truth = "Prep+ is the best".split(' ');
-    
-    loopThrough(truth, print)
-      // Prep+
-      // is
-      // the
-      // best
-
-    */
+    for(var i = 0; i < array.length; i++){
+      callback(array[i]);
+    }
   };  
 
+// copyBy takes an array, and a callback, and returns a new array containing the result of the callback invoked on each value
   window.copyBy = function(array, callback){
+  // new array to be returned
+  var result = [];
 
+  // utilize loopThrough function and push new values into the results array
+  loopThrough(array,function(val) {result.push(callback(val));} );
 
-    /*
-    1. copyBy takes an array, and a callback, and returns a new array containing the result of the callback invoked on each value.
-
-    2. Requirement: copyBy must utilize loopThrough to go through the array and perform the associated functionality.
-
-
-    example:
-
-    var nums = [1, 2, 3, 4, 5];
-    var truth = ['I', "love", "functional", "programming"];
-    
-    var mult2 = function(val){
-      return val * 2;
-    };
-
-    var upperCase = function(val){
-      return val.toUpperCase()
-    };
-    copyBy(nums, mult2) --> [2, 4, 6, 8, 10];
-
-    copyBy(truth, upperCase) ---> "I LOVE FUNCTIONAL PROGRAMMING";
-
-  */
-
+  return result;
   };  
 
+  // filterBy takes an array, and a predicate, and returns an array filled by with ONLY the values that pass the predicates truth test
   window.filterBy = function(array, predicate){
+    var result = [];
+    
+    loopThrough(array, function(val) {result.push(predicate(val));} );
 
-  /*
-    1. filterBy takes an array, and a predicate, and returns an array filled by with ONLY the values that pass the predicates truth test.
-
-
-    2. Requirement: copyBy must utilize loopThrough to go through the array and perform the associated functionality.
-
-
-  */
+    return result;
   };
-  
 
+
+ var nums = [1, 2, 3, 4, 6];
+    
+    var isEven = function(val){
+      return val % 2 === 0;
+    };
+
+var evenArray = [2, 4, 6, 8, 10];
+
+
+// allPass takes an array and a predicate and returns true if every value in the array passes the truth test, and returns false if even one of the fails the predicate test
   window.allPass = function(array, predicate){
+      loopThrough(array, function(val) {
+        // if element in array is true
+        if(val === false){
+          return false;
+        }
+        else{
+          return true;
+        }
+  });
+};
 
+    var test = allPass(nums, isEven);
+    console.log(test);
     /*
     1. allPass takes an array and a predicate and returns true if every value in the array passes the truth test, and returns false if even one of the fails the predicate test.
 
@@ -85,8 +72,7 @@
     allPass(evenArray, isEven) --> true;
     
   */
-
-  };  
+  
 
   window.somePass = function(array, callback){
 
