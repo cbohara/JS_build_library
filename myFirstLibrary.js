@@ -1,6 +1,6 @@
   
 
-  loopThrough = function(array, callback){
+  window.loopThrough = function(array, callback){
     /* 
 
     1. loopThrough takes an array and a callback and invokes the callback on each value inside of the array.
@@ -20,7 +20,7 @@
     */
   };  
 
-  copyBy = function(array, callback){
+  window.copyBy = function(array, callback){
 
 
     /*
@@ -41,7 +41,7 @@
     var upperCase = function(val){
       return val.toUpperCase()
     };
-    copyBy(nums, mult2) --> 15;
+    copyBy(nums, mult2) --> [2, 4, 6, 8, 10];
 
     copyBy(truth, upperCase) ---> "I LOVE FUNCTIONAL PROGRAMMING";
 
@@ -49,7 +49,7 @@
 
   };  
 
-  filterBy = function(array, predicate){
+  window.filterBy = function(array, predicate){
 
   /*
     1. filterBy takes an array, and a predicate, and returns an array filled by with ONLY the values that pass the predicates truth test.
@@ -62,7 +62,7 @@
   };
   
 
-  allPass = function(array, predicate){
+  window.allPass = function(array, predicate){
 
     /*
     1. allPass takes an array and a predicate and returns true if every value in the array passes the truth test, and returns false if even one of the fails the predicate test.
@@ -88,7 +88,7 @@
 
   };  
 
-  somePass = function(array, callback){
+  window.somePass = function(array, callback){
 
     /*
     1. somePass takes an array, and a callback, and false is none of the values pass the predicate test.
@@ -117,7 +117,7 @@
   };
   
 
-  reduceNums = function(array, callback){
+  window.reduceNums = function(array, callback){
 
   /*
     1. reduceNums takes an array, and a callback, and returns the sum of each value reduced by the callback function.
