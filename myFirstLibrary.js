@@ -64,7 +64,7 @@ window.filterBy = function(array, predicate){
 
 // filterBy(nums,isEven);
 
-
+/*
 var nums = [1, 2, 3, 4, 6];
 
 var evenArray = [2, 4, 6, 8, 10];
@@ -72,6 +72,7 @@ var evenArray = [2, 4, 6, 8, 10];
 var isEven = function(val){
   return val % 2 === 0;
 };
+*/
 
 // allPass takes an array and a predicate and returns true if every value in the array passes the predicate test. returns false if any value in array fails the predicate test. 
 
@@ -96,48 +97,60 @@ window.allPass = function(array, predicate){
 };
 
 // allPass(nums, isEven);
-// allPass(evenArray, isEven);    
+// allPass(evenArray, isEven);
 
+/*
+var nums = [1, 2, 3, 4, 6];
 
+var evenArray = [2, 4, 6, 8, 10];
 
-
-
-
-
-
-
-
-
-  window.somePass = function(array, callback){
-
-    /*
-    1. somePass takes an array, and a callback, and false is none of the values pass the predicate test.
-
-    2. Requirement: somePass must utilize loopThrough to go through the array and perform the associated functionality.
-
-
-    example:
-
-    var nums = [1, 2, 3, 4, 5];
-    
-    var add = function(num1, num2){
-      return num1 + num2;
-    };
-    
-    reduceNums(nums, add) --> 15;
-
-    var mult = function(num1, num2){
-      return num1 * num2;
-    };
-
-    reduceNums(nums, mult) --> 120;
-
-    */
-
-  };
+var oddArray = [1, 3, 5, 7];
   
+var isEven = function(val){
+  return val % 2 === 0;
+};
+*/
+var filterTrue = function(val){      
+  return val === true;
+};
+// somePass takes an array, and a predicate, and returns false if none of the values pass the predicate test
+window.somePass = function(array, predicate){
+  // create array to hold result values
+  var predicateResult = [];
+  // loop though the array and push the boolean value result of the predicate test into the result array
+  loopThrough(array, function(val){predicateResult.push(predicate(val));});
+  // filter through predicateResult array to return a new array of true values, if they exist 
+  var filterForTrueArray = predicateResult.filter(filterTrue);
+  // if filterForTrueArray contains no values, then return false. otherwise return true.
+  if(filterForTrueArray.length === 0){
+    return false;
+  }
+  else{
+    return true;
+  }
+};
 
-  window.reduceNums = function(array, callback){
+// var testMix = somePass(nums, isEven);
+// console.log('testMix',testMix);
+// var testEven = somePass(evenArray, isEven);
+// console.log('testEven',testEven);
+// var testOdd = somePass(oddArray, isEven);
+// console.log('testOdd',testOdd);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.reduceNums = function(array, callback){
 
   /*
     1. reduceNums takes an array, and a callback, and returns the sum of each value reduced by the callback function.
