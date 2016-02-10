@@ -41,18 +41,18 @@ window.copyBy = function(array, callback){
 // copyBy(nums, mult2);
 // copyBy(truth, upperCase);
 
-    /*
-    var nums = [1, 2, 3, 4, 6];
+/*
+var nums = [1, 2, 3, 4, 6];
     
-    var isEven = function(val){
-      if(val % 2 === 0){
-        return true;
-      }
-      else{
-        return false;
-      }
-    };
-    */
+var isEven = function(val){
+  if(val % 2 === 0){
+    return true;
+  }
+  else{
+    return false;
+  }
+};
+*/
 // filterBy takes an array, and a predicate, and returns an array filled by with ONLY the values that pass the predicates truth test
 window.filterBy = function(array, predicate){
   // new array to be returned
@@ -137,46 +137,39 @@ window.somePass = function(array, predicate){
 // var testOdd = somePass(oddArray, isEven);
 // console.log('testOdd',testOdd);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-window.reduceNums = function(array, callback){
-
-  /*
-    1. reduceNums takes an array, and a callback, and returns the sum of each value reduced by the callback function.
-
-    2. Requirement: sumNums must utilize loopThrough to go through the array and perform the associated functionality.
-
-
-    example:
-
     var nums = [1, 2, 3, 4, 5];
-    
     var add = function(num1, num2){
       return num1 + num2;
     };
-    
-    reduceNums(nums, add) --> 15;
 
-    var mult = function(num1, num2){
+// reduceNums takes an array, and a callback, and returns the sum of each value reduced by the callback function
+// reduceNums must utilize loopThrough to go through the array and perform the associated functionality
+window.reduceNums = function(array, callback){
+  // initalize value to return sum
+  var sum = 0;
+  // loop through the array and add each element to the sum variable
+  loopThrough(array, function(element){ sum = callback(sum, element); });
+
+  return sum;
+};
+
+reduceNums(nums, add);
+
+var nums = [1, 2, 3, 4, 5];
+var mult = function(num1, num2){
       return num1 * num2;
-    };
-
-    reduceNums(nums, mult) --> 120;
-
-    */
-
   };
+
+window.reduceNums = function(array, callback){
+  // initalize value to return sum
+  var sum = 1;
+  // loop through the array and add each element to the sum variable
+  loopThrough(array, function(element){ sum = callback(sum, element); });
+
+  return sum;
+};
+
+reduceNums(nums, mult);
 
 
 
