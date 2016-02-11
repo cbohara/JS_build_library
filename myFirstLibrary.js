@@ -64,16 +64,7 @@ window.filterBy = function(array, predicate){
 
 // filterBy(nums,isEven);
 
-
-var nums = [1, 2, 3, 4, 6];
-
-var evenArray = [2, 4, 6, 8, 10];
-    
-var isEven = function(val){
-  return val % 2 === 0;
-};
-
-// ==================ALLPASS MY VERSION===========================
+// ==================ALLPASS MY ORIGINAL VERSION===========================
 // allPass takes an array and a predicate and returns true if every value in the array passes the predicate test. returns false if any value in array fails the predicate test. 
 
 var filterFalse = function(val){      
@@ -96,37 +87,16 @@ window.allPass = function(array, predicate){
   }
 };
 
-var mixed = allPass(nums, isEven);
+// var mixed = allPass(nums, isEven);
 // console.log('mixed',mixed);
-allPass(evenArray, isEven);
+// allPass(evenArray, isEven);
 // console.log('even',even);
 
-/*
-var nums = [1, 2, 3, 4, 6];
-
-var evenArray = [2, 4, 6, 8, 10];
-
-var oddArray = [1, 3, 5, 7];
-  
-var isEven = function(val){
-  return val % 2 === 0;
-};
-*/
-
-// ==================ALLPASS EFFICIENT WAY==========================
+// ==================ALLPASS EFFICIENT VERSION==========================
 // allPass takes an array and a predicate and returns true if every value in the array passes the predicate test. returns false if any value in array fails the predicate test.
-var nums = [1, 2, 3, 4, 6];
-
-var evenArray = [2, 4, 6, 8, 10];
-
-var oddArray = [1, 3, 5, 7];
-  
-var isEven = function(val){
-  return val % 2 === 0;
-};
 
 window.allPass = function(array, predicate){
-  // hold a value to test against
+  // initialize result to true
   var predicateResult = true;
   // utilize loopThrough function to loop through the array and apply the predicate test on each element of the array
   loopThrough(array, function(val){
@@ -145,67 +115,28 @@ window.allPass = function(array, predicate){
 // var even = allPass(evenArray, isEven);
 // console.log('even',even);
 
-// ======================SOMEPASS MY VERSION===============================
-// somePass takes an array, and a predicate, and returns false if none of the values pass the predicate test
+// somePass takes an array, and a predicate, and returns false if none of the values pass the predicate test. if any value in the array is true, return true.
 window.somePass = function(array, predicate){
-  // create array to hold result values
-  var predicateResult = [];
-  // loop though the array and push the boolean value result of the predicate test into the result array
-  loopThrough(array, function(val){predicateResult.push(predicate(val));});
-  // filter through predicateResult array to return a new array of true values, if they exist 
-  var filterForTrueArray = predicateResult.filter(filterTrue);
-  // if filterForTrueArray contains no values, then return false. otherwise return true.
-  if(filterForTrueArray.length === 0){
-    return false;
-  }
-  else{
-    return true;
-  }
-};
-
-// var testMix = somePass(nums, isEven);
-// console.log('testMix',testMix);
-// var testEven = somePass(evenArray, isEven);
-// console.log('testEven',testEven);
-// var testOdd = somePass(oddArray, isEven);
-// console.log('testOdd',testOdd);
-
-    var nums = [1, 2, 3, 4, 5];
-    var add = function(num1, num2){
-      return num1 + num2;
-    };
-
-// ===================SOMEPASS EFFICIENT WAY=========================
-// somePass takes an array, and a predicate, and returns false if none of the values pass the predicate test
-
-var nums = [1, 2, 3, 4, 6];
-
-var evenArray = [2, 4, 6, 8, 10];
-
-var oddArray = [1, 3, 5, 7];
-  
-var isEven = function(val){
-  return val % 2 === 0;
-};
-
-window.somePass = function(array, predicate){
-  // hold a value to test against
-  var predicateResult = true;
+  // initialize result to false
+  var predicateResult = false;
   // utilize loopThrough function to loop through the array and apply the predicate test on each element of the array
   loopThrough(array, function(val){
-    if(predicate(val) === false){
-      predicateResult = false; 
+    // if any value in the array is true, return true
+    if(predicate(val) === true){
+      predicateResult = true; 
     }
   })
+  // return true if any value in the array passes the predicate test
+  // return false if no values pass the predicate test
   return predicateResult;
 };
 
-// var mixed = allPass(nums, isEven);
+// var mixed = somePass(nums, isEven);
 // console.log('mixed',mixed);
-// var even = allPass(evenArray, isEven);
+// var even = somePass(evenArray, isEven);
 // console.log('even',even);
-};
-
+// var odd = somePass(oddArray, isEven);
+// console.log('odd',odd);
 
 // reduceNums takes an array, and a callback, and returns the sum of each value reduced by the callback function
 // reduceNums must utilize loopThrough to go through the array and perform the associated functionality
@@ -234,76 +165,49 @@ window.reduceNums = function(array, callback){
   return sum;
 };
 
-reduceNums(nums, mult);
-
+// reduceNums(nums, mult);
 
   // ===================================== Extra Credit ==================================================================
+
+
+  /* ANONYMOUS FUNCTIONS:
+  
+  Anonymous functions aren't as helpful as named functions, but they are definitely used in the JavaScript wild. 
+  If you haven't already, go through and refactor your loopThrough invocations to take anonymous functions rather than named functions.
+  */
+
+
   /* EXPANDING LOOP THROUGH:
     Expand loopThrough to be able to take in an array OR an object.
-
     This should allow your other functions to do the same since they are built on top of loopThrough.
-
     Try this example below to see whether your implementation works:
-*/
-Object.size = function(obj) {
-    var size = 0, key;
-    for (key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-};
-
-// Get the size of an object
-var size = Object.size(myArray);
-
-var obj = {
-  1: true,
-  2: false,
-  3: true,
-  4: false
-};
-
-var pureTruthy = function(val){
-  if (typeof val === boolean & val === true){
-      return true;
-  } else {
-      return false;
-  }
-};
-
-window.loopThrough = function(object, callback){
-  for(var i = 0; i < object.length; i++){
-      callback(object['i']);
-  }
-};
-// filterBy takes an array, and a predicate, and returns an array filled by with ONLY the values that pass the predicates truth test
-window.filterBy = function(array, predicate){
-  // new array to be returned
-  var result = [];
-  // utilize loopThrough function and push values that pass the predicate test into the results array
-  loopThrough(array, function(val){result.push(predicate(val));});
-  console.log('result',result);
-  return result;
-};
-
-filterBy(obj, pureTruthy);
-// [true, true];
+    var obj {
+      1: true,
+      2: false,
+      3: true,
+      4: false,
+    };
+    var pureTruthy = function(val){
+        if (typeof val === boolean & val === true){
+            return true;
+        } else {
+            return false
+        }
+    };
+    filter(obj, pureTruthy); --> [true, true];
+  */
 
 
 
   /* EXPANDING REDUCENUMS:
   
-
     Turn reduceNums into extendedReduce. Extended reduce has an added 'start' parameter, and uses that value to collect the reduced values of each element in the input array.
-
     Example below:
     
     var alwaysBeCoding = ['I ', 'code ', 'all day ', 'every ', 'day'];
     var addToString = function(str1, str2){
       return str1 + str2;
     };
-
     extendedReduce(alwaysBeCoding, addToString, ''); --> 'I code all day ever day';
-
   */
 
