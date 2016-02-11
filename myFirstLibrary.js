@@ -60,11 +60,16 @@ window.filterBy = function(array, predicate){
   // new array to be returned
   var result = [];
   // utilize loopThrough function and push values that pass the predicate test into the results array
-  loopThrough(array, function(val) {result.push(predicate(val));});
+  loopThrough(array, function(val) {
+    if(predicate(val)){
+      result.push(val);
+    }
+  });
   return result;
 };
 
-// filterBy(nums,isEven);
+// var test = filterBy(nums,isEven);
+// console.log(test);
 
 // ==================ALLPASS MY ORIGINAL VERSION===========================
 // allPass takes an array and a predicate and returns true if every value in the array passes the predicate test. returns false if any value in array fails the predicate test. 
