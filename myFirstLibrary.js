@@ -113,16 +113,39 @@ var isEven = function(val){
 };
 */
 
+// ==================ALLPASS EFFICIENT WAY==========================
+// allPass takes an array and a predicate and returns true if every value in the array passes the predicate test. returns false if any value in array fails the predicate test.
+var nums = [1, 2, 3, 4, 6];
 
-// ===============ALLPASS ALBREY WAY===================
-filterBy(arr, predicate){
-  // container for results
-  // check
-}
+var evenArray = [2, 4, 6, 8, 10];
 
-var filterTrue = function(val){      
-  return val === true;
+var oddArray = [1, 3, 5, 7];
+  
+var isEven = function(val){
+  return val % 2 === 0;
 };
+
+window.allPass = function(array, predicate){
+  // hold a value to test against
+  var predicateResult = true;
+  // utilize loopThrough function to loop through the array and apply the predicate test on each element of the array
+  loopThrough(array, function(val){
+    // if the element in array is false, then the overall result will be changed from true to false
+    if(predicate(val) === false){
+      predicateResult = false; 
+    }
+  })
+  // return true if every value in the array passes the predicate test
+  // return false if any value in array fails the predicate test
+  return predicateResult;
+};
+
+// var mixed = allPass(nums, isEven);
+// console.log('mixed',mixed);
+// var even = allPass(evenArray, isEven);
+// console.log('even',even);
+
+// ======================SOMEPASS MY VERSION===============================
 // somePass takes an array, and a predicate, and returns false if none of the values pass the predicate test
 window.somePass = function(array, predicate){
   // create array to hold result values
@@ -151,6 +174,38 @@ window.somePass = function(array, predicate){
     var add = function(num1, num2){
       return num1 + num2;
     };
+
+// ===================SOMEPASS EFFICIENT WAY=========================
+// somePass takes an array, and a predicate, and returns false if none of the values pass the predicate test
+
+var nums = [1, 2, 3, 4, 6];
+
+var evenArray = [2, 4, 6, 8, 10];
+
+var oddArray = [1, 3, 5, 7];
+  
+var isEven = function(val){
+  return val % 2 === 0;
+};
+
+window.somePass = function(array, predicate){
+  // hold a value to test against
+  var predicateResult = true;
+  // utilize loopThrough function to loop through the array and apply the predicate test on each element of the array
+  loopThrough(array, function(val){
+    if(predicate(val) === false){
+      predicateResult = false; 
+    }
+  })
+  return predicateResult;
+};
+
+// var mixed = allPass(nums, isEven);
+// console.log('mixed',mixed);
+// var even = allPass(evenArray, isEven);
+// console.log('even',even);
+};
+
 
 // reduceNums takes an array, and a callback, and returns the sum of each value reduced by the callback function
 // reduceNums must utilize loopThrough to go through the array and perform the associated functionality
