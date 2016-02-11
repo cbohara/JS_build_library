@@ -64,7 +64,7 @@ window.filterBy = function(array, predicate){
 
 // filterBy(nums,isEven);
 
-/*
+
 var nums = [1, 2, 3, 4, 6];
 
 var evenArray = [2, 4, 6, 8, 10];
@@ -72,8 +72,8 @@ var evenArray = [2, 4, 6, 8, 10];
 var isEven = function(val){
   return val % 2 === 0;
 };
-*/
 
+// ==================ALLPASS MY VERSION===========================
 // allPass takes an array and a predicate and returns true if every value in the array passes the predicate test. returns false if any value in array fails the predicate test. 
 
 var filterFalse = function(val){      
@@ -82,7 +82,7 @@ var filterFalse = function(val){
 
 window.allPass = function(array, predicate){
   // create array to hold result values
-  var predicateResult = [];
+  var predicateResult;
   // loop though the array and push the boolean value result of the predicate test into the result array
   loopThrough(array, function(val){predicateResult.push(predicate(val));});
   // filter through predicateResult array to return a new array of false values, if they exist 
@@ -96,8 +96,10 @@ window.allPass = function(array, predicate){
   }
 };
 
-// allPass(nums, isEven);
-// allPass(evenArray, isEven);
+var mixed = allPass(nums, isEven);
+// console.log('mixed',mixed);
+allPass(evenArray, isEven);
+// console.log('even',even);
 
 /*
 var nums = [1, 2, 3, 4, 6];
@@ -110,6 +112,14 @@ var isEven = function(val){
   return val % 2 === 0;
 };
 */
+
+
+// ===============ALLPASS ALBREY WAY===================
+filterBy(arr, predicate){
+  // container for results
+  // check
+}
+
 var filterTrue = function(val){      
   return val === true;
 };
@@ -172,46 +182,57 @@ window.reduceNums = function(array, callback){
 reduceNums(nums, mult);
 
 
-
   // ===================================== Extra Credit ==================================================================
-
-
-  /* ANONYMOUS FUNCTIONS:
-  
-  Anonymous functions aren't as helpful as named functions, but they are definitely used in the JavaScript wild. 
-
-  If you haven't already, go through and refactor your loopThrough invocations to take anonymous functions rather than named functions.
-
-  */
-
-
   /* EXPANDING LOOP THROUGH:
-
     Expand loopThrough to be able to take in an array OR an object.
 
     This should allow your other functions to do the same since they are built on top of loopThrough.
 
     Try this example below to see whether your implementation works:
+*/
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
 
+// Get the size of an object
+var size = Object.size(myArray);
 
-    var obj {
-      1: true,
-      2: false,
-      3: true,
-      4: false,
-    };
+var obj = {
+  1: true,
+  2: false,
+  3: true,
+  4: false
+};
 
-    var pureTruthy = function(val){
-        if (typeof val === boolean & val === true){
-            return true;
-        } else {
-            return false
-        }
-    };
+var pureTruthy = function(val){
+  if (typeof val === boolean & val === true){
+      return true;
+  } else {
+      return false;
+  }
+};
 
-    filter(obj, pureTruthy); --> [true, true];
+window.loopThrough = function(object, callback){
+  for(var i = 0; i < object.length; i++){
+      callback(object['i']);
+  }
+};
+// filterBy takes an array, and a predicate, and returns an array filled by with ONLY the values that pass the predicates truth test
+window.filterBy = function(array, predicate){
+  // new array to be returned
+  var result = [];
+  // utilize loopThrough function and push values that pass the predicate test into the results array
+  loopThrough(array, function(val){result.push(predicate(val));});
+  console.log('result',result);
+  return result;
+};
 
-  */
+filterBy(obj, pureTruthy);
+// [true, true];
 
 
 
