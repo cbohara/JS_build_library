@@ -55,6 +55,7 @@ var isEven = function(val){
   }
 };
 */
+
 // filterBy takes an array, and a predicate, and returns an array filled by with ONLY the values that pass the predicates truth test
 window.filterBy = function(array, predicate){
   // new array to be returned
@@ -71,37 +72,7 @@ window.filterBy = function(array, predicate){
 // var test = filterBy(nums,isEven);
 // console.log(test);
 
-// ==================ALLPASS MY ORIGINAL VERSION===========================
-// allPass takes an array and a predicate and returns true if every value in the array passes the predicate test. returns false if any value in array fails the predicate test. 
-
-var filterFalse = function(val){      
-  return val === false;
-};
-
-window.allPass = function(array, predicate){
-  // create array to hold result values
-  var predicateResult;
-  // loop though the array and push the boolean value result of the predicate test into the result array
-  loopThrough(array, function(val){predicateResult.push(predicate(val));});
-  // filter through predicateResult array to return a new array of false values, if they exist 
-  var filterForFalseArray = predicateResult.filter(filterFalse);
-  // if filterForFalseArray contains any values, then the predicate returned false for at least one value in the original array. therefore return false. otherwise return true.
-  if(filterForFalseArray.length > 0){
-    return false;
-  }
-  else{
-    return true;
-  }
-};
-
-// var mixed = allPass(nums, isEven);
-// console.log('mixed',mixed);
-// allPass(evenArray, isEven);
-// console.log('even',even);
-
-// ==================ALLPASS EFFICIENT VERSION==========================
 // allPass takes an array and a predicate and returns true if every value in the array passes the predicate test. returns false if any value in array fails the predicate test.
-
 window.allPass = function(array, predicate){
   // initialize result to true
   var predicateResult = true;
