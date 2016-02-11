@@ -43,6 +43,8 @@ window.copyBy = function(array, callback){
 
 /*
 var nums = [1, 2, 3, 4, 6];
+var evenArray = [2, 4, 6, 8];
+var oddArray = [1, 3, 5, 7];
     
 var isEven = function(val){
   if(val % 2 === 0){
@@ -149,7 +151,7 @@ window.reduceNums = function(array, callback){
   return sum;
 };
 
-reduceNums(nums, add);
+// reduceNums(nums, add);
 
 var nums = [1, 2, 3, 4, 5];
 var mult = function(num1, num2){
