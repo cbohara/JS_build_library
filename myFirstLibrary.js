@@ -122,7 +122,9 @@ window.reduceNums = function(array, callback){
   // initalize value to return sum
   var sum = 0;
   // loop through the array and add each element to the sum variable
-  loopThrough(array, function(element){ sum = callback(sum, element); });
+  loopThrough(array, function(element){ 
+    sum = callback(sum, element); 
+  });
 
   return sum;
 };
